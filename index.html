@@ -1,0 +1,904 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nothing But the Truth - B2 First</title>
+  <style>
+    /* ===== AceLingua Color Palette (Red, Yellow, Blue) ===== */
+    :root {
+      --al-red: #ff0000;
+      --al-pure-red: #f70000;
+      --al-school-bus-yellow: #fdc20a;
+      --al-baltic-blue: #065e93;
+      --al-white: #ffffff;
+      --al-light-grey: #f0f2f5;
+      --al-warm-grey: #e8e0d5;
+      --al-cream: #fdfaf5;
+      --al-text-dark: #1a2a3a;
+      --al-text-medium: #4a5a6a;
+      --al-shadow: rgba(6, 94, 147, 0.15);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+      background: var(--al-baltic-blue);
+      color: var(--al-text-dark);
+      padding: 20px;
+      display: flex;
+      justify-content: center;
+      min-height: 100vh;
+    }
+
+    .presentation-wrapper {
+      max-width: 1200px;
+      width: 100%;
+      background: var(--al-white);
+      border-radius: 24px;
+      box-shadow: 0 8px 30px var(--al-shadow);
+      padding: 35px 45px;
+      position: relative;
+    }
+
+    #slides { position: relative; min-height: 400px; }
+
+    .slide {
+      display: none;
+      animation: fadeIn 0.25s ease;
+      padding: 25px 40px;
+      background: var(--al-white);
+      border-radius: 16px;
+      color: var(--al-text-dark);
+    }
+    .slide.active { display: block; }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ===== Slide Number ===== */
+    .slide-number {
+      display: inline-block;
+      background: var(--al-baltic-blue);
+      color: var(--al-white);
+      font-weight: 700;
+      font-size: 0.8rem;
+      padding: 2px 12px;
+      border-radius: 30px;
+      margin-bottom: 8px;
+      letter-spacing: 0.5px;
+    }
+
+    /* ===== Typography ===== */
+    .slide h1 {
+      font-size: 3.0rem;
+      color: var(--al-baltic-blue);
+      margin-bottom: 8px;
+    }
+    .slide h2 {
+      font-size: 2.4rem;
+      color: var(--al-baltic-blue);
+      border-bottom: 3px solid var(--al-school-bus-yellow);
+      padding-bottom: 6px;
+      margin-bottom: 12px;
+    }
+    .slide h3 {
+      font-size: 2.0rem;
+      color: var(--al-baltic-blue);
+      border-bottom: 3px solid var(--al-school-bus-yellow);
+      padding-bottom: 6px;
+      margin-bottom: 12px;
+    }
+    .slide h4 {
+      font-size: 1.3rem;
+      color: var(--al-baltic-blue);
+      margin-top: 12px;
+      margin-bottom: 6px;
+    }
+    .slide p {
+      font-size: 1.2rem;
+      line-height: 1.8;
+      margin-bottom: 10px;
+      color: var(--al-text-dark);
+    }
+    .slide ul, .slide ol {
+      margin-left: 20px;
+      margin-bottom: 10px;
+      line-height: 1.8;
+      color: var(--al-text-dark);
+    }
+    .slide li { font-size: 1.15rem; margin-bottom: 2px; }
+    .slide strong { color: var(--al-baltic-blue); }
+    .slide em { color: var(--al-red); font-style: italic; }
+
+    .slide table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 1rem;
+      background: var(--al-cream);
+      border-radius: 10px;
+      overflow: hidden;
+      margin: 8px 0;
+    }
+    .slide table th {
+      background: var(--al-baltic-blue);
+      color: var(--al-white);
+      padding: 10px 14px;
+      text-align: left;
+      font-size: 1.1rem;
+    }
+    .slide table td {
+      padding: 8px 14px;
+      border-bottom: 1px solid var(--al-warm-grey);
+      color: var(--al-text-dark);
+      font-size: 1rem;
+    }
+    .slide table tr:last-child td { border-bottom: none; }
+
+    /* ===== Images ===== */
+    .slide img {
+      max-height: 280px;
+      width: auto;
+      margin: 10px auto;
+      border-radius: 12px;
+      border: 2px solid var(--al-school-bus-yellow);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      display: block;
+    }
+
+    /* ===== Cards & Boxes ===== */
+    .text-card {
+      background: var(--al-cream);
+      padding: 16px 20px;
+      border-radius: 12px;
+      border-left: 4px solid var(--al-baltic-blue);
+      margin-bottom: 12px;
+      font-size: 1.1rem;
+      line-height: 1.8;
+      max-height: 300px;
+      overflow-y: auto;
+      color: var(--al-text-dark);
+    }
+    .text-card strong { color: var(--al-baltic-blue); }
+
+    .tip-box {
+      background: var(--al-light-grey);
+      padding: 12px 16px;
+      border-radius: 8px;
+      margin: 10px 0;
+      font-size: 1rem;
+      color: var(--al-text-medium);
+      border-left: 3px solid var(--al-school-bus-yellow);
+    }
+    .tip-box strong { color: var(--al-baltic-blue); }
+
+    .highlight-box {
+      background: #e6f0f5;
+      padding: 12px 16px;
+      border-radius: 8px;
+      border-left: 4px solid var(--al-baltic-blue);
+      margin: 10px 0;
+    }
+    .highlight-box strong { color: var(--al-baltic-blue); }
+
+    .speaking-box {
+      background: var(--al-light-grey);
+      padding: 12px 16px;
+      border-radius: 8px;
+      margin-top: 10px;
+    }
+    .speaking-box strong { color: var(--al-baltic-blue); }
+
+    .teacher-notes {
+      background: var(--al-cream);
+      padding: 24px 28px;
+      border-radius: 16px;
+      border: 2px solid var(--al-school-bus-yellow);
+    }
+    .teacher-notes h3 { border-bottom: 3px solid var(--al-school-bus-yellow); padding-bottom: 6px; }
+    .teacher-notes p, .teacher-notes li { color: var(--al-text-dark); }
+
+    /* ===== Interactive Elements ===== */
+    .interactive-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin: 8px 0;
+    }
+    .interactive-grid .item {
+      flex: 1 1 45%;
+      min-width: 200px;
+      background: var(--al-cream);
+      padding: 12px 16px;
+      border-radius: 8px;
+      border: 1px solid var(--al-warm-grey);
+    }
+    .interactive-grid .item select {
+      width: 100%;
+      padding: 6px 10px;
+      border-radius: 6px;
+      border: 2px solid var(--al-warm-grey);
+      font-family: inherit;
+      font-size: 1rem;
+      background: var(--al-white);
+      margin-top: 4px;
+    }
+    .interactive-grid .item label {
+      font-size: 1rem;
+      color: var(--al-text-dark);
+      display: block;
+    }
+
+    .match-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 6px;
+      flex-wrap: wrap;
+    }
+    .match-item select {
+      padding: 6px 10px;
+      border-radius: 6px;
+      border: 2px solid var(--al-warm-grey);
+      font-family: inherit;
+      font-size: 1rem;
+      background: var(--al-white);
+      min-width: 160px;
+    }
+    .match-item select.correct {
+      border-color: var(--al-baltic-blue);
+      background: #e6f0f5;
+    }
+    .match-item select.incorrect {
+      border-color: var(--al-pure-red);
+      background: #fdd0d0;
+    }
+    .match-item .word {
+      font-weight: 600;
+      color: var(--al-baltic-blue);
+      min-width: 100px;
+      font-size: 1.1rem;
+    }
+
+    .btn-row {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin: 10px 0;
+    }
+    .btn {
+      padding: 12px 34px;
+      border: none;
+      border-radius: 30px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      font-family: inherit;
+      transition: 0.15s ease;
+    }
+    .btn:active { transform: scale(0.96); }
+    .btn-check {
+      background: var(--al-baltic-blue);
+      color: var(--al-white);
+    }
+    .btn-check:hover { background: #044d7a; }
+    .btn-reset {
+      background: var(--al-pure-red);
+      color: var(--al-white);
+    }
+    .btn-reset:hover { background: #cc0000; }
+
+    .feedback-text {
+      margin-top: 8px;
+      font-size: 1rem;
+      color: var(--al-text-dark);
+    }
+    .feedback-text .correct { color: var(--al-baltic-blue); font-weight: 600; }
+    .feedback-text .incorrect { color: var(--al-red); }
+
+    /* ===== Navigation ===== */
+    .slide-nav {
+      margin-top: 20px;
+      text-align: center;
+      padding-top: 14px;
+      border-top: 2px solid var(--al-warm-grey);
+    }
+    .btn-nav {
+      background: var(--al-baltic-blue);
+      color: var(--al-white);
+      border: none;
+      padding: 12px 34px;
+      border-radius: 30px;
+      font-size: 1rem;
+      cursor: pointer;
+      margin: 0 8px;
+      font-family: inherit;
+      font-weight: 600;
+    }
+    .btn-nav:hover { background: #044d7a; }
+    .btn-nav:disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+    }
+    .btn-nav:disabled:hover { background: var(--al-baltic-blue); }
+
+    /* ===== CC License ===== */
+    .cc-license {
+      font-size: 0.85rem;
+      color: var(--al-text-medium);
+      text-align: center;
+      margin-top: 16px;
+      padding-top: 12px;
+      border-top: 1px solid var(--al-warm-grey);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 2px;
+    }
+    .cc-license a {
+      color: var(--al-baltic-blue);
+      text-decoration: none;
+    }
+    .cc-license a:hover { text-decoration: underline; }
+    .cc-license img {
+      max-width: 2em;
+      max-height: 2em;
+      margin-left: 0.1em;
+      margin-right: 0.1em;
+      border: none;
+      display: inline;
+      vertical-align: middle;
+    }
+
+    /* ===== Answer Key ===== */
+    .answer-key {
+      background: var(--al-cream);
+      padding: 16px 20px;
+      border-radius: 12px;
+      border: 2px solid var(--al-baltic-blue);
+      margin: 8px 0;
+    }
+    .answer-key h4 {
+      color: var(--al-baltic-blue);
+      margin-bottom: 6px;
+    }
+    .answer-key p {
+      font-size: 1rem;
+      line-height: 1.6;
+      margin-bottom: 4px;
+    }
+
+    /* ===== Responsive ===== */
+    @media (max-width: 700px) {
+      .presentation-wrapper { padding: 16px; }
+      .slide { padding: 14px 18px; }
+      .slide h1 { font-size: 2rem; }
+      .slide h2 { font-size: 1.6rem; }
+      .slide p, .slide li { font-size: 0.95rem; }
+      .slide img { max-height: 160px; }
+      .interactive-grid .item { flex: 1 1 100%; }
+      .match-item { flex-direction: column; align-items: stretch; }
+      .match-item select { min-width: auto; }
+      .btn-row { flex-direction: column; }
+      .btn { width: 100%; text-align: center; }
+      .cc-license { font-size: 0.7rem; }
+      .cc-license img { max-width: 1.6em; max-height: 1.6em; }
+      .btn-nav { padding: 10px 20px; font-size: 0.9rem; }
+    }
+  </style>
+</head>
+<body>
+<div class="presentation-wrapper">
+  <div id="slides">
+
+    <!-- ===== SLIDE 1: TITLE ===== -->
+    <section class="slide active">
+      <div class="slide-number">Class 1 - Slide 1</div>
+      <h1>Nothing But the Truth</h1>
+      <h2 style="border-bottom: none; font-size: 2.0rem; color: var(--al-text-medium);">Crime, Punishment, and the Law</h2>
+      <p style="font-size: 1.3rem; color: var(--al-text-medium);">B2 First Preparation</p>
+      <div style="background: var(--al-cream); padding: 16px 20px; border-radius: 12px; margin: 12px 0; border-left: 4px solid var(--al-baltic-blue);">
+        <p style="font-size: 1.1rem;"><strong>Aims:</strong></p>
+        <ul>
+          <li>Discuss crime, punishment, and the legal system</li>
+          <li>Learn vocabulary for crimes, criminals, and punishments</li>
+          <li>Use the passive voice to describe actions and processes</li>
+          <li>Form participle adjectives and adverbs</li>
+          <li>Develop speaking skills for B2 First</li>
+        </ul>
+      </div>
+      <div class="slide-nav">
+        <button class="btn-nav slide-prev" data-action="prev" disabled>Previous</button>
+        <button class="btn-nav slide-next" data-action="next">Next</button>
+      </div>
+    </section>
+
+    <!-- ===== SLIDE 2: SPEAKING PART 1 ===== -->
+    <section class="slide">
+      <div class="slide-number">Class 1 - Slide 2</div>
+      <h2>Speaking Part 1: Interview</h2>
+      <p style="font-size: 1.15rem; margin-bottom: 12px;">Work with a partner. Discuss these questions.</p>
+      <div style="background: var(--al-cream); padding: 16px 20px; border-radius: 12px; border-left: 4px solid var(--al-school-bus-yellow);">
+        <ol style="font-size: 1.15rem; line-height: 1.8;">
+          <li><strong>Do you always tell the truth?</strong></li>
+          <li><strong>Do you enjoy watching reality programmes which show the police doing their job?</strong></li>
+          <li><strong>Who is your favourite fictional detective?</strong></li>
+          <li><strong>Is there a lot of graffiti in your area?</strong></li>
+          <li><strong>If you found a wallet or purse with a few coins in it, would you hand it in to the police?</strong></li>
+        </ol>
+      </div>
+      <div class="tip-box">
+        <p style="font-size: 1rem;"><strong>Tip:</strong> Give full answers with reasons and examples.</p>
+      </div>
+      <div class="slide-nav">
+        <button class="btn-nav slide-prev" data-action="prev">Previous</button>
+        <button class="btn-nav slide-next" data-action="next">Next</button>
+      </div>
+    </section>
+
+    <!-- ===== SLIDE 3: VOCABULARY - CRIMES AND CRIMINALS ===== -->
+    <section class="slide">
+      <div class="slide-number">Class 1 - Slide 3</div>
+      <h2>Vocabulary: Crimes and Criminals</h2>
+      <p style="font-size: 1.15rem; margin-bottom: 8px;">Match each crime with the correct description.</p>
+      <div id="crimeActivity"></div>
+      <div class="btn-row">
+        <button class="btn btn-check" id="checkCrime">Check Answers</button>
+        <button class="btn btn-reset" id="resetCrime">Reset</button>
+      </div>
+      <div class="feedback-text" id="crimeFeedback"></div>
+      <div class="slide-nav">
+        <button class="btn-nav slide-prev" data-action="prev">Previous</button>
+        <button class="btn-nav slide-next" data-action="next">Next</button>
+      </div>
+    </section>
+
+    <!-- ===== SLIDE 4: VOCABULARY - CRIMINAL TITLES ===== -->
+    <section class="slide">
+      <div class="slide-number">Class 1 - Slide 4</div>
+      <h2>Vocabulary: Criminal Titles</h2>
+      <p style="font-size: 1.15rem; margin-bottom: 8px;">What is the title of each criminal?</p>
+      <div id="criminalTitleActivity"></div>
+      <div class="btn-row">
+        <button class="btn btn-check" id="checkCriminal">Check Answers</button>
+        <button class="btn btn-reset" id="resetCriminal">Reset</button>
+      </div>
+      <div class="feedback-text" id="criminalFeedback"></div>
+      <div class="slide-nav">
+        <button class="btn-nav slide-prev" data-action="prev">Previous</button>
+        <button class="btn-nav slide-next" data-action="next">Next</button>
+      </div>
+    </section>
+
+    <!-- ===== SLIDE 5: VOCABULARY - PUNISHMENT ===== -->
+    <section class="slide">
+      <div class="slide-number">Class 1 - Slide 5</div>
+      <h2>Vocabulary: Punishment</h2>
+      <p style="font-size: 1.15rem; margin-bottom: 8px;">Order these punishments from least to most severe.</p>
+      <div id="punishmentActivity"></div>
+      <div class="btn-row">
+        <button class="btn btn-check" id="checkPunishment">Check Answers</button>
+        <button class="btn btn-reset" id="resetPunishment">Reset</button>
+      </div>
+      <div class="feedback-text" id="punishmentFeedback"></div>
+      <div class="slide-nav">
+        <button class="btn-nav slide-prev" data-action="prev">Previous</button>
+        <button class="btn-nav slide-next" data-action="next">Next</button>
+      </div>
+    </section>
+
+    <!-- ===== SLIDE 6: SPEAKING - CRIME DISCUSSION ===== -->
+    <section class="slide">
+      <div class="slide-number">Class 1 - Slide 6</div>
+      <h2>Speaking: Crime and Punishment</h2>
+      <div style="background: var(--light-grey); padding: 14px 18px; border-radius: 12px; margin-bottom: 10px;">
+        <p style="font-size: 1.15rem;"><strong>Task:</strong> Work in pairs. Discuss what punishment, if any, should be given to the criminals from Slide 3.</p>
+        <p style="font-size: 1.1rem; margin-top: 6px;"><strong>Useful language:</strong></p>
+        <ul style="font-size: 1.1rem; line-height: 1.8;">
+          <li><strong>Giving opinions:</strong> <em>"In my opinion..."</em> / <em>"Personally, I think..."</em></li>
+          <li><strong>Agreeing:</strong> <em>"That's right."</em> / <em>"I agree up to a point."</em></li>
+          <li><strong>Disagreeing:</strong> <em>"I really don't think so."</em> / <em>"I completely disagree."</em></li>
+        </ul>
+      </div>
+      <div style="background: var(--cream); padding: 12px 16px; border-radius: 8px; border-left: 4px solid var(--al-school-bus-yellow);">
+        <p style="font-size: 1.1rem;"><strong>Example:</strong> <em>"A shoplifter should do community service rather than go to prison."</em></p>
+      </div>
+      <div class="slide-nav">
+        <button class="btn-nav slide-prev" data-action="prev">Previous</button>
+        <button class="btn-nav slide-next" data-action="next">Next</button>
+      </div>
+    </section>
+
+    <!-- ===== SLIDE 7: GRAMMAR DISCOVERY - PASSIVE VOICE ===== -->
+    <section class="slide">
+      <div class="slide-number">Class 1 - Slide 7</div>
+      <h2>Grammar Discovery: Passive Voice</h2>
+      <p style="font-size: 1.15rem; margin-bottom: 8px;">Read these sentences from the article. What do they have in common?</p>
+      <div style="background: var(--cream); padding: 16px 20px; border-radius: 12px; border-left: 4px solid var(--al-baltic-blue); margin: 8px 0;">
+        <ul style="font-size: 1.15rem; line-height: 1.8;">
+          <li><em>"The evidence we obtain will <strong>not be accepted</strong> in court."</em></li>
+          <li><em>"Most of what we do <strong>could be done</strong> by the clients."</em></li>
+          <li><em>"She drops her voice so as not to <strong>be overheard</strong>."</em></li>
+          <li><em>"Her mobile phone rings and she <strong>is called</strong> away."</em></li>
+        </ul>
+      </div>
+      <div style="background: var(--light-grey); padding: 12px 16px; border-radius: 8px;">
+        <p style="font-size: 1.1rem;"><strong>Discuss with your partner:</strong></p>
+        <ul style="font-size: 1.1rem; line-height: 1.8;">
+          <li>What is the structure of the passive? (be + past participle)</li>
+          <li>Why do we use the passive? (focus on the action, not the person)</li>
+          <li>Where is the agent (doer) in these sentences?</li>
+        </ul>
+      </div>
+      <div class="tip-box">
+        <p style="font-size: 1rem;"><strong>Rule:</strong> Passive = be + past participle. Use it to focus on the action, not the person who did it.</p>
+      </div>
+      <div class="slide-nav">
+        <button class="btn-nav slide-prev" data-action="prev">Previous</button>
+        <button class="btn-nav slide-next" data-action="next">Next</button>
+      </div>
+    </section>
+
+    <!-- ===== SLIDE 8: GRAMMAR PRACTICE - PASSIVE VOICE ===== -->
+    <section class="slide">
+      <div class="slide-number">Class 1 - Slide 8</div>
+      <h2>Practice: Passive Voice</h2>
+      <p style="font-size: 1.15rem; margin-bottom: 8px;">Complete the sentences with the correct passive form.</p>
+      <div id="passivePractice"></div>
+      <div class="btn-row">
+        <button class="btn btn-check" id="checkPassive">Check Answers</button>
+        <button class="btn btn-reset" id="resetPassive">Reset</button>
+      </div>
+      <div class="feedback-text" id="passiveFeedback"></div>
+      <div class="slide-nav">
+        <button class="btn-nav slide-prev" data-action="prev">Previous</button>
+        <button class="btn-nav slide-next" data-action="next">Next</button>
+      </div>
+    </section>
+
+    <!-- ===== SLIDE 9: WORD FORMATION - PARTICIPLE ADJECTIVES ===== -->
+    <section class="slide">
+      <div class="slide-number">Class 1 - Slide 9</div>
+      <h2>Word Formation: Participle Adjectives</h2>
+      <p style="font-size: 1.15rem; margin-bottom: 8px;">Complete each gap with the correct adjective or adverb formed from the word in capitals.</p>
+      <div id="participleActivity"></div>
+      <div class="btn-row">
+        <button class="btn btn-check" id="checkParticiple">Check Answers</button>
+        <button class="btn btn-reset" id="resetParticiple">Reset</button>
+      </div>
+      <div class="feedback-text" id="participleFeedback"></div>
+      <div class="slide-nav">
+        <button class="btn-nav slide-prev" data-action="prev">Previous</button>
+        <button class="btn-nav slide-next" data-action="next">Next</button>
+      </div>
+    </section>
+
+    <!-- ===== SLIDE 10: VOCABULARY - PARAPHRASING ===== -->
+    <section class="slide">
+      <div class="slide-number">Class 1 - Slide 10</div>
+      <h2>Vocabulary: Paraphrasing</h2>
+      <p style="font-size: 1.15rem; margin-bottom: 8px;">Complete each gap so that the second sentence has the same meaning as the first.</p>
+      <div id="paraphraseActivity"></div>
+      <div class="btn-row">
+        <button class="btn btn-check" id="checkParaphrase">Check Answers</button>
+        <button class="btn btn-reset" id="resetParaphrase">Reset</button>
+      </div>
+      <div class="feedback-text" id="paraphraseFeedback"></div>
+      <div class="slide-nav">
+        <button class="btn-nav slide-prev" data-action="prev">Previous</button>
+        <button class="btn-nav slide-next" data-action="next">Next</button>
+      </div>
+    </section>
+
+    <!-- ===== SLIDE 11: SPEAKING - ANTISOCIAL BEHAVIOUR ===== -->
+    <section class="slide">
+      <div class="slide-number">Class 1 - Slide 11</div>
+      <h2>Speaking: Antisocial Behaviour</h2>
+      <div style="background: var(--light-grey); padding: 14px 18px; border-radius: 12px; margin-bottom: 10px;">
+        <p style="font-size: 1.15rem;"><strong>Task:</strong> Work in pairs. Discuss these questions.</p>
+        <ol style="font-size: 1.15rem; line-height: 1.8;">
+          <li><strong>How serious is antisocial behaviour where you live?</strong></li>
+          <li><strong>What types of antisocial behaviour are most common?</strong></li>
+          <li><strong>What methods are used to deal with it? Are they effective?</strong></li>
+        </ol>
+      </div>
+      <div style="background: var(--cream); padding: 12px 16px; border-radius: 8px; border-left: 4px solid var(--al-school-bus-yellow);">
+        <p style="font-size: 1.1rem;"><strong>Useful language:</strong></p>
+        <ul style="font-size: 1.1rem; line-height: 1.6;">
+          <li><em>"In my opinion, the most effective method is..."</em></li>
+          <li><em>"I strongly believe that..."</em></li>
+          <li><em>"That's a good point, but..."</em></li>
+        </ul>
+      </div>
+      <div class="slide-nav">
+        <button class="btn-nav slide-prev" data-action="prev">Previous</button>
+        <button class="btn-nav slide-next" data-action="next">Next</button>
+      </div>
+    </section>
+
+    <!-- ===== SLIDE 12: ANSWER KEY ===== -->
+    <section class="slide">
+      <div class="slide-number">Class 1 - Slide 12</div>
+      <h2>Answer Key</h2>
+      <div class="answer-key">
+        <h4>Slide 3: Crimes</h4>
+        <p>1-mugging, 2-shoplifting, 3-vandalism, 4-drink-driving, 5-drug trafficking, 6-internet piracy, 7-identity fraud, 8-burglary</p>
+      </div>
+      <div class="answer-key">
+        <h4>Slide 4: Criminal Titles</h4>
+        <p>1-mugger, 2-shoplifter, 3-vandal, 4-drink-driver, 5-drug trafficker, 6-internet pirate, 7-identity fraudster, 8-burglar</p>
+      </div>
+      <div class="answer-key">
+        <h4>Slide 5: Punishment (least to most severe)</h4>
+        <p>1-acquit, 2-fine, 3-community service, 4-prison sentence, 5-life imprisonment</p>
+      </div>
+      <div class="answer-key">
+        <h4>Slide 8: Passive Voice</h4>
+        <p>1-is defined, 2-are categorised, 3-were increased, 4-are being installed, 5-was fined, 6-was told, 7-have been criticised, 8-were contacted, 9-be made, 10-had been warned, 11-would be taken, 12-was not turned down, 13-was being pushed, 14-be attacked, 15-be treated, 16-was sent</p>
+      </div>
+      <div class="answer-key">
+        <h4>Slide 9: Participle Adjectives</h4>
+        <p>1-disappointed, 2-surprised, 3-varied, 4-stimulating, 5-rewarding, 6-surprisingly, 7-threatening, 8-relieved</p>
+      </div>
+      <div class="answer-key">
+        <h4>Slide 10: Paraphrasing</h4>
+        <p>1-blame, 2-Contrary / within, 3-pretty, 4-hourly, 5-run, 6-available, 7-own, 8-former</p>
+      </div>
+      <div class="slide-nav">
+        <button class="btn-nav slide-prev" data-action="prev">Previous</button>
+        <button class="btn-nav slide-next" data-action="next" disabled>Next</button>
+      </div>
+    </section>
+
+  </div><!-- end #slides -->
+</div><!-- end .presentation-wrapper -->
+
+<script>
+  (function() {
+    // ===== SLIDE NAVIGATION =====
+    function initNavigation() {
+      var slides = document.querySelectorAll('.slide');
+      var total = slides.length;
+      var current = 0;
+      slides.forEach(function(s, i) { if (s.classList.contains('active')) current = i; });
+
+      function goTo(index) {
+        if (index < 0 || index >= total) return;
+        slides.forEach(function(s) { s.classList.remove('active'); });
+        slides[index].classList.add('active');
+        current = index;
+
+        var prevBtns = document.querySelectorAll('.slide-prev');
+        var nextBtns = document.querySelectorAll('.slide-next');
+        prevBtns.forEach(function(b) { b.disabled = (current === 0); });
+        nextBtns.forEach(function(b) { b.disabled = (current === total - 1); });
+      }
+
+      document.querySelectorAll('.slide-prev').forEach(function(b) {
+        b.addEventListener('click', function(e) {
+          e.stopPropagation();
+          if (current > 0) goTo(current - 1);
+        });
+      });
+
+      document.querySelectorAll('.slide-next').forEach(function(b) {
+        b.addEventListener('click', function(e) {
+          e.stopPropagation();
+          if (current < total - 1) goTo(current + 1);
+        });
+      });
+
+      var prevBtns = document.querySelectorAll('.slide-prev');
+      var nextBtns = document.querySelectorAll('.slide-next');
+      prevBtns.forEach(function(b) { b.disabled = (current === 0); });
+      nextBtns.forEach(function(b) { b.disabled = (current === total - 1); });
+    }
+
+    // ===== GENERIC DROPDOWN ACTIVITY =====
+    function createDropdownActivity(containerId, data, correctAnswers, checkBtnId, resetBtnId, feedbackId) {
+      var container = document.getElementById(containerId);
+      var selects = [];
+
+      container.innerHTML = '';
+
+      data.forEach(function(item, index) {
+        var wrapper = document.createElement('div');
+        wrapper.className = 'match-item';
+
+        var span = document.createElement('span');
+        span.innerHTML = item.prompt;
+        wrapper.appendChild(span);
+
+        var select = document.createElement('select');
+        select.id = containerId + '_' + index;
+
+        var option = document.createElement('option');
+        option.value = '';
+        option.textContent = 'Select...';
+        select.appendChild(option);
+
+        var shuffled = item.options.slice();
+        for (var j = shuffled.length - 1; j > 0; j--) {
+          var k = Math.floor(Math.random() * (j + 1));
+          var temp = shuffled[j];
+          shuffled[j] = shuffled[k];
+          shuffled[k] = temp;
+        }
+
+        shuffled.forEach(function(opt) {
+          var optEl = document.createElement('option');
+          optEl.value = opt;
+          optEl.textContent = opt;
+          select.appendChild(optEl);
+        });
+
+        selects.push(select);
+        wrapper.appendChild(select);
+        container.appendChild(wrapper);
+      });
+
+      var checkBtn = document.getElementById(checkBtnId);
+      var resetBtn = document.getElementById(resetBtnId);
+      var feedback = document.getElementById(feedbackId);
+
+      checkBtn.addEventListener('click', function() {
+        var correct = 0;
+        selects.forEach(function(sel, idx) {
+          if (sel.value === correctAnswers[idx]) {
+            correct++;
+            sel.className = 'correct';
+          } else {
+            sel.className = 'incorrect';
+          }
+        });
+        feedback.innerHTML = '<p>You got <strong>' + correct + '</strong> out of ' + correctAnswers.length + ' correct.</p>';
+        feedback.style.display = 'block';
+        if (correct === correctAnswers.length) {
+          feedback.innerHTML += '<p style="color:#065e93;font-weight:600;">Perfect!</p>';
+        }
+      });
+
+      resetBtn.addEventListener('click', function() {
+        selects.forEach(function(sel) {
+          sel.value = '';
+          sel.className = '';
+        });
+        feedback.innerHTML = '';
+        feedback.style.display = 'none';
+      });
+    }
+
+    // ===== SLIDE 3: CRIMES =====
+    function initCrime() {
+      var data = [
+        { prompt: '<strong>1.</strong> A young man attacks another and robs him of his wallet.', options: ['mugging', 'burglary', 'shoplifting'] },
+        { prompt: '<strong>2.</strong> A 78-year-old woman steals a scarf from a department store.', options: ['shoplifting', 'vandalism', 'identity fraud'] },
+        { prompt: '<strong>3.</strong> A 14-year-old sets fire to litter bins and breaks car windows.', options: ['vandalism', 'mugging', 'drink-driving'] },
+        { prompt: '<strong>4.</strong> A driver has had three glasses of wine.', options: ['drink-driving', 'drug trafficking', 'internet piracy'] },
+        { prompt: '<strong>5.</strong> A criminal gang earns millions from buying and selling narcotics.', options: ['drug trafficking', 'internet piracy', 'identity fraud'] },
+        { prompt: '<strong>6.</strong> A group illegally distributes films online.', options: ['internet piracy', 'identity fraud', 'burglary'] },
+        { prompt: '<strong>7.</strong> A man tricks people into emailing him their bank details and takes money.', options: ['identity fraud', 'mugging', 'shoplifting'] },
+        { prompt: '<strong>8.</strong> A journalist breaks into the town hall to steal documents.', options: ['burglary', 'vandalism', 'mugging'] }
+      ];
+      var correctAnswers = ['mugging', 'shoplifting', 'vandalism', 'drink-driving', 'drug trafficking', 'internet piracy', 'identity fraud', 'burglary'];
+      createDropdownActivity('crimeActivity', data, correctAnswers, 'checkCrime', 'resetCrime', 'crimeFeedback');
+    }
+
+    // ===== SLIDE 4: CRIMINAL TITLES =====
+    function initCriminal() {
+      var data = [
+        { prompt: '<strong>1.</strong> mugging →', options: ['mugger', 'mugger', 'mugger'] },
+        { prompt: '<strong>2.</strong> shoplifting →', options: ['shoplifter', 'shoplifter', 'shoplifter'] },
+        { prompt: '<strong>3.</strong> vandalism →', options: ['vandal', 'vandal', 'vandal'] },
+        { prompt: '<strong>4.</strong> drink-driving →', options: ['drink-driver', 'drink-driver', 'drink-driver'] },
+        { prompt: '<strong>5.</strong> drug trafficking →', options: ['drug trafficker', 'drug trafficker', 'drug trafficker'] },
+        { prompt: '<strong>6.</strong> internet piracy →', options: ['internet pirate', 'internet pirate', 'internet pirate'] },
+        { prompt: '<strong>7.</strong> identity fraud →', options: ['identity fraudster', 'identity fraudster', 'identity fraudster'] },
+        { prompt: '<strong>8.</strong> burglary →', options: ['burglar', 'burglar', 'burglar'] }
+      ];
+      var correctAnswers = ['mugger', 'shoplifter', 'vandal', 'drink-driver', 'drug trafficker', 'internet pirate', 'identity fraudster', 'burglar'];
+      createDropdownActivity('criminalTitleActivity', data, correctAnswers, 'checkCriminal', 'resetCriminal', 'criminalFeedback');
+    }
+
+    // ===== SLIDE 5: PUNISHMENT =====
+    function initPunishment() {
+      var data = [
+        { prompt: '<strong>1.</strong> Least severe', options: ['to acquit', 'to fine', 'community service'] },
+        { prompt: '<strong>2.</strong> Less severe', options: ['to fine', 'community service', 'prison sentence'] },
+        { prompt: '<strong>3.</strong> Moderate', options: ['community service', 'prison sentence', 'life imprisonment'] },
+        { prompt: '<strong>4.</strong> Severe', options: ['prison sentence', 'life imprisonment', 'to acquit'] },
+        { prompt: '<strong>5.</strong> Most severe', options: ['life imprisonment', 'to acquit', 'to fine'] }
+      ];
+      var correctAnswers = ['to acquit', 'to fine', 'community service', 'prison sentence', 'life imprisonment'];
+      createDropdownActivity('punishmentActivity', data, correctAnswers, 'checkPunishment', 'resetPunishment', 'punishmentFeedback');
+    }
+
+    // ===== SLIDE 8: PASSIVE VOICE =====
+    function initPassive() {
+      var data = [
+        { prompt: '<strong>1.</strong> Antisocial behaviour ________ (define) as conduct that causes distress.', options: ['is defined', 'was defined', 'has been defined'] },
+        { prompt: '<strong>2.</strong> Different types ________ (categorise) as follows.', options: ['are categorised', 'were categorised', 'have been categorised'] },
+        { prompt: '<strong>3.</strong> Last month, police patrols ________ (increase) in the town\'s parks.', options: ['were increased', 'are increased', 'have been increased'] },
+        { prompt: '<strong>4.</strong> CCTV cameras ________ (install) on buses in four major cities.', options: ['are being installed', 'were installed', 'have been installed'] },
+        { prompt: '<strong>5.</strong> The court ________ (fine) the neighbours £300 yesterday.', options: ['was fined', 'were fined', 'is fined'] },
+        { prompt: '<strong>6.</strong> Joe Cave ________ (tell) that students had been warned previously.', options: ['was told', 'is told', 'has been told'] },
+        { prompt: '<strong>7.</strong> The government ________ (criticise) for being too soft on crime.', options: ['has been criticised', 'was criticised', 'is criticised'] },
+        { prompt: '<strong>8.</strong> Parents ________ (contact) and asked to come and take their child home.', options: ['were contacted', 'are contacted', 'have been contacted'] },
+        { prompt: '<strong>9.</strong> Parents need to ________ (make) aware of their responsibilities.', options: ['be made', 'made', 'have made'] },
+        { prompt: '<strong>10.</strong> The students ________ (warn) on several occasions previously.', options: ['had been warned', 'were warned', 'have been warned'] },
+        { prompt: '<strong>11.</strong> Legal action ________ (take) if the music was not turned down.', options: ['would be taken', 'was taken', 'has been taken'] },
+        { prompt: '<strong>12.</strong> The music ________ (not/turn) down despite the warnings.', options: ['was not turned down', 'is not turned down', 'has not been turned down'] },
+        { prompt: '<strong>13.</strong> The little one ________ (push) around by the older boys.', options: ['was being pushed', 'was pushed', 'is pushed'] },
+        { prompt: '<strong>14.</strong> He might ________ (attack) more seriously.', options: ['be attacked', 'have been attacked', 'was attacked'] },
+        { prompt: '<strong>15.</strong> After ________ (treat) in hospital, Mrs Slade was sent home.', options: ['being treated', 'treating', 'treated'] },
+        { prompt: '<strong>16.</strong> Mrs Slade ________ (send) home last night.', options: ['was sent', 'is sent', 'has been sent'] }
+      ];
+      var correctAnswers = [
+        'is defined', 'are categorised', 'were increased', 'are being installed',
+        'was fined', 'was told', 'has been criticised', 'were contacted',
+        'be made', 'had been warned', 'would be taken', 'was not turned down',
+        'was being pushed', 'be attacked', 'being treated', 'was sent'
+      ];
+      createDropdownActivity('passivePractice', data, correctAnswers, 'checkPassive', 'resetPassive', 'passiveFeedback');
+    }
+
+    // ===== SLIDE 9: PARTICIPLE ADJECTIVES =====
+    function initParticiple() {
+      var data = [
+        { prompt: '<strong>1.</strong> DISAPPOINT → I am a little ________.', options: ['disappointed', 'disappointing', 'disappointedly'] },
+        { prompt: '<strong>2.</strong> SURPRISE → Jenny is not ________ at my error.', options: ['surprised', 'surprising', 'surprisingly'] },
+        { prompt: '<strong>3.</strong> VARY → The types of cases are ________.', options: ['varied', 'varying', 'variously'] },
+        { prompt: '<strong>4.</strong> STIMULATE → The day-to-day work is far from ________.', options: ['stimulating', 'stimulated', 'stimulately'] },
+        { prompt: '<strong>5.</strong> REWARD → Resolving a case is very ________.', options: ['rewarding', 'rewarded', 'rewardingly'] },
+        { prompt: '<strong>6.</strong> SURPRISE → Not ________, patience is an important asset.', options: ['surprisingly', 'surprised', 'surprising'] },
+        { prompt: '<strong>7.</strong> THREAT → They are less ________ when making enquiries.', options: ['threatening', 'threatened', 'threateningly'] },
+        { prompt: '<strong>8.</strong> RELIEF → People are ________ when a woman picks up the phone.', options: ['relieved', 'relieving', 'relievingly'] }
+      ];
+      var correctAnswers = ['disappointed', 'surprised', 'varied', 'stimulating', 'rewarding', 'surprisingly', 'threatening', 'relieved'];
+      createDropdownActivity('participleActivity', data, correctAnswers, 'checkParticiple', 'resetParticiple', 'participleFeedback');
+    }
+
+    // ===== SLIDE 10: PARAPHRASING =====
+    function initParaphrase() {
+      var data = [
+        { prompt: '<strong>1.</strong> Cinema and television are mostly to ________ for our reputation.', options: ['blame', 'charge', 'fault'] },
+        { prompt: '<strong>2.</strong> ________ to popular belief, we work strictly within the law.', options: ['Contrary', 'According', 'Due'] },
+        { prompt: '<strong>3.</strong> We\'re ________ good at breaking bad news.', options: ['pretty', 'very', 'extremely'] },
+        { prompt: '<strong>4.</strong> The ________ rate is anything between sixty and a hundred pounds.', options: ['hourly', 'daily', 'weekly'] },
+        { prompt: '<strong>5.</strong> The cost can ________ into thousands of pounds.', options: ['run', 'go', 'come'] },
+        { prompt: '<strong>6.</strong> The technology is freely ________ to everyone.', options: ['available', 'accessible', 'obtainable'] },
+        { prompt: '<strong>7.</strong> The truth is too painful to do on your ________.', options: ['own', 'self', 'alone'] },
+        { prompt: '<strong>8.</strong> Jenny is a ________ night club owner.', options: ['former', 'previous', 'past'] }
+      ];
+      var correctAnswers = ['blame', 'Contrary', 'pretty', 'hourly', 'run', 'available', 'own', 'former'];
+      createDropdownActivity('paraphraseActivity', data, correctAnswers, 'checkParaphrase', 'resetParaphrase', 'paraphraseFeedback');
+    }
+
+    // ===== INIT =====
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', function() {
+        initNavigation();
+        initCrime();
+        initCriminal();
+        initPunishment();
+        initPassive();
+        initParticiple();
+        initParaphrase();
+      });
+    } else {
+      initNavigation();
+      initCrime();
+      initCriminal();
+      initPunishment();
+      initPassive();
+      initParticiple();
+      initParaphrase();
+    }
+  })();
+</script>
+</body>
+</html>
