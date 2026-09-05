@@ -192,6 +192,18 @@
     }
     .speaking-box strong { color: var(--al-baltic-blue); }
 
+    .roleplay-box {
+      background: var(--al-cream);
+      padding: 16px 20px;
+      border-radius: 12px;
+      border: 2px solid var(--al-school-bus-yellow);
+      margin: 8px 0;
+    }
+    .roleplay-box .speaker {
+      font-weight: 600;
+      color: var(--al-baltic-blue);
+    }
+
     .teacher-notes {
       background: var(--al-cream);
       padding: 24px 28px;
@@ -372,19 +384,6 @@
       margin-bottom: 4px;
     }
 
-    /* ===== Speaking Role Play ===== */
-    .roleplay-box {
-      background: var(--al-cream);
-      padding: 16px 20px;
-      border-radius: 12px;
-      border: 2px solid var(--al-school-bus-yellow);
-      margin: 8px 0;
-    }
-    .roleplay-box .speaker {
-      font-weight: 600;
-      color: var(--al-baltic-blue);
-    }
-
     /* ===== Responsive ===== */
     @media (max-width: 700px) {
       .presentation-wrapper { padding: 16px; }
@@ -414,7 +413,7 @@
       <div class="slide-number">Class 1 - Slide 1</div>
       <h1>Nothing But the Truth</h1>
       <h2 style="border-bottom: none; font-size: 2.0rem; color: var(--al-text-medium);">Crime, Punishment, and the Law</h2>
-      <img src="https://raw.githubusercontent.com/InglesLibre/ImageRepo/main/Mystery3.png" alt="Crime and justice concept">
+      <img src="https://raw.githubusercontent.com/InglesLibre/ImageRepo/main/ScalesofJustice.png" alt="Scales of justice and law books">
       <p style="font-size: 1.3rem; color: var(--al-text-medium);">B2 First Preparation</p>
       <div style="background: var(--al-cream); padding: 16px 20px; border-radius: 12px; margin: 12px 0; border-left: 4px solid var(--al-baltic-blue);">
         <p style="font-size: 1.1rem;"><strong>Aims:</strong></p>
@@ -436,7 +435,7 @@
     <section class="slide">
       <div class="slide-number">Class 1 - Slide 2</div>
       <h2>Speaking Part 1: Interview</h2>
-      <img src="https://raw.githubusercontent.com/InglesLibre/ImageRepo/main/Travel4.png" alt="Two people having a conversation">
+      <img src="https://raw.githubusercontent.com/InglesLibre/ImageRepo/main/Debate1.png" alt="Two people having a conversation">
       <p style="font-size: 1.15rem; margin-bottom: 12px;">Work with a partner. Discuss these questions.</p>
       <div style="background: var(--al-cream); padding: 16px 20px; border-radius: 12px; border-left: 4px solid var(--al-school-bus-yellow);">
         <ol style="font-size: 1.15rem; line-height: 1.8;">
@@ -460,7 +459,7 @@
     <section class="slide">
       <div class="slide-number">Class 1 - Slide 3</div>
       <h2>Vocabulary: Crimes and Criminals</h2>
-      <img src="https://raw.githubusercontent.com/InglesLibre/ImageRepo/main/Mystery4.png" alt="Crime scene investigation">
+      <img src="https://raw.githubusercontent.com/InglesLibre/ImageRepo/main/CrimeScene.png" alt="Crime scene investigation">
       <p style="font-size: 1.15rem; margin-bottom: 8px;">Match each crime with the correct description.</p>
       <div id="crimeActivity"></div>
       <div class="btn-row">
@@ -512,7 +511,7 @@
     <section class="slide">
       <div class="slide-number">Class 1 - Slide 6</div>
       <h2>Speaking: Crime and Punishment</h2>
-      <img src="https://raw.githubusercontent.com/InglesLibre/ImageRepo/main/Lifestyles1.png" alt="Group discussion">
+      <img src="https://raw.githubusercontent.com/InglesLibre/ImageRepo/main/SeriousDiscussion.png" alt="Group discussion">
       <div style="background: var(--light-grey); padding: 14px 18px; border-radius: 12px; margin-bottom: 10px;">
         <p style="font-size: 1.15rem;"><strong>Task:</strong> Work in pairs. Discuss what punishment, if any, should be given to the criminals from Slide 3.</p>
         <p style="font-size: 1.1rem; margin-top: 6px;"><strong>Useful language:</strong></p>
@@ -578,44 +577,11 @@
       </div>
     </section>
 
-    <!-- ===== SLIDE 9: WORD FORMATION - PARTICIPLE ADJECTIVES ===== -->
+    <!-- ===== SLIDE 9: SPEAKING ROLE PLAY - REPORTING A CRIME ===== -->
     <section class="slide">
       <div class="slide-number">Class 1 - Slide 9</div>
-      <h2>Word Formation: Participle Adjectives</h2>
-      <p style="font-size: 1.15rem; margin-bottom: 8px;">Complete each gap with the correct adjective or adverb formed from the word in capitals.</p>
-      <div id="participleActivity"></div>
-      <div class="btn-row">
-        <button class="btn btn-check" id="checkParticiple">Check Answers</button>
-        <button class="btn btn-reset" id="resetParticiple">Reset</button>
-      </div>
-      <div class="feedback-text" id="participleFeedback"></div>
-      <div class="slide-nav">
-        <button class="btn-nav slide-prev" data-action="prev">Previous</button>
-        <button class="btn-nav slide-next" data-action="next">Next</button>
-      </div>
-    </section>
-
-    <!-- ===== SLIDE 10: VOCABULARY - PARAPHRASING ===== -->
-    <section class="slide">
-      <div class="slide-number">Class 1 - Slide 10</div>
-      <h2>Vocabulary: Paraphrasing</h2>
-      <p style="font-size: 1.15rem; margin-bottom: 8px;">Complete each gap so that the second sentence has the same meaning as the first.</p>
-      <div id="paraphraseActivity"></div>
-      <div class="btn-row">
-        <button class="btn btn-check" id="checkParaphrase">Check Answers</button>
-        <button class="btn btn-reset" id="resetParaphrase">Reset</button>
-      </div>
-      <div class="feedback-text" id="paraphraseFeedback"></div>
-      <div class="slide-nav">
-        <button class="btn-nav slide-prev" data-action="prev">Previous</button>
-        <button class="btn-nav slide-next" data-action="next">Next</button>
-      </div>
-    </section>
-
-    <!-- ===== SLIDE 11: SPEAKING ROLE PLAY - REPORTING A CRIME ===== -->
-    <section class="slide">
-      <div class="slide-number">Class 1 - Slide 11</div>
       <h2>Speaking Role Play: Reporting a Crime</h2>
+      <img src="https://raw.githubusercontent.com/InglesLibre/ImageRepo/main/PoliceReport.png" alt="Police report scene">
       <p style="font-size: 1.15rem; margin-bottom: 8px;">Work in pairs. Student A is a witness; Student B is a police officer.</p>
 
       <div class="roleplay-box">
@@ -649,6 +615,40 @@
       <div class="tip-box">
         <p style="font-size: 1rem;"><strong>Useful language:</strong> <em>"I saw a man who..."</em> / <em>"He was wearing..."</em> / <em>"He ran towards..."</em></p>
       </div>
+      <div class="slide-nav">
+        <button class="btn-nav slide-prev" data-action="prev">Previous</button>
+        <button class="btn-nav slide-next" data-action="next">Next</button>
+      </div>
+    </section>
+
+    <!-- ===== SLIDE 10: WORD FORMATION - PARTICIPLE ADJECTIVES ===== -->
+    <section class="slide">
+      <div class="slide-number">Class 1 - Slide 10</div>
+      <h2>Word Formation: Participle Adjectives</h2>
+      <p style="font-size: 1.15rem; margin-bottom: 8px;">Complete each gap with the correct adjective or adverb formed from the word in capitals.</p>
+      <div id="participleActivity"></div>
+      <div class="btn-row">
+        <button class="btn btn-check" id="checkParticiple">Check Answers</button>
+        <button class="btn btn-reset" id="resetParticiple">Reset</button>
+      </div>
+      <div class="feedback-text" id="participleFeedback"></div>
+      <div class="slide-nav">
+        <button class="btn-nav slide-prev" data-action="prev">Previous</button>
+        <button class="btn-nav slide-next" data-action="next">Next</button>
+      </div>
+    </section>
+
+    <!-- ===== SLIDE 11: VOCABULARY - PARAPHRASING ===== -->
+    <section class="slide">
+      <div class="slide-number">Class 1 - Slide 11</div>
+      <h2>Vocabulary: Paraphrasing</h2>
+      <p style="font-size: 1.15rem; margin-bottom: 8px;">Complete each gap so that the second sentence has the same meaning as the first.</p>
+      <div id="paraphraseActivity"></div>
+      <div class="btn-row">
+        <button class="btn btn-check" id="checkParaphrase">Check Answers</button>
+        <button class="btn btn-reset" id="resetParaphrase">Reset</button>
+      </div>
+      <div class="feedback-text" id="paraphraseFeedback"></div>
       <div class="slide-nav">
         <button class="btn-nav slide-prev" data-action="prev">Previous</button>
         <button class="btn-nav slide-next" data-action="next">Next</button>
@@ -702,11 +702,11 @@
         <p>1-is defined, 2-are categorised, 3-were increased, 4-are being installed, 5-was fined, 6-was told, 7-have been criticised, 8-were contacted, 9-be made, 10-had been warned, 11-would be taken, 12-was not turned down, 13-was being pushed, 14-be attacked, 15-being treated, 16-was sent</p>
       </div>
       <div class="answer-key">
-        <h4>Slide 9: Participle Adjectives</h4>
+        <h4>Slide 10: Participle Adjectives</h4>
         <p>1-disappointed, 2-surprised, 3-varied, 4-stimulating, 5-rewarding, 6-surprisingly, 7-threatening, 8-relieved</p>
       </div>
       <div class="answer-key">
-        <h4>Slide 10: Paraphrasing</h4>
+        <h4>Slide 11: Paraphrasing</h4>
         <p>1-blame, 2-Contrary / within, 3-pretty, 4-hourly, 5-run, 6-available, 7-own, 8-former</p>
       </div>
       <div class="slide-nav">
@@ -907,7 +907,7 @@
       createDropdownActivity('passivePractice', data, correctAnswers, 'checkPassive', 'resetPassive', 'passiveFeedback');
     }
 
-    // ===== SLIDE 9: PARTICIPLE ADJECTIVES =====
+    // ===== SLIDE 10: PARTICIPLE ADJECTIVES =====
     function initParticiple() {
       var data = [
         { prompt: '<strong>1.</strong> DISAPPOINT → I am a little ________.', options: ['disappointed', 'disappointing', 'disappointedly'] },
@@ -923,7 +923,7 @@
       createDropdownActivity('participleActivity', data, correctAnswers, 'checkParticiple', 'resetParticiple', 'participleFeedback');
     }
 
-    // ===== SLIDE 10: PARAPHRASING =====
+    // ===== SLIDE 11: PARAPHRASING =====
     function initParaphrase() {
       var data = [
         { prompt: '<strong>1.</strong> Cinema and television are mostly to ________ for our reputation.', options: ['blame', 'charge', 'fault'] },
